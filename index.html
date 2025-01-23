@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Webpage</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        /* General Layout */
+        .container {
+            display: flex;
+            margin-top: 60px; /* Space for the fixed navbar */
+        }
+
+        .left-menu {
+            width: 20%;
+            background-color: #f4f4f4;
+            padding: 1rem;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            transition: width 0.3s;
+            overflow: hidden;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 1.5rem;
+            background-color: #fff;
+            overflow-y: auto;
+            max-height: calc(100vh - 120px); /* Adjust for navbar and footer */
+        }
+
+        .right-panel {
+            width: 20%;
+            background-color: #f9f9f9;
+            padding: 1rem;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Collapse Button */
+        .collapse-button {
+            margin-bottom: 10px;
+            padding: 0.5rem 1rem;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .left-menu.collapsed {
+            width: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .menu-toggle-symbol {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            display: none;
+        }
+
+        .left-menu.collapsed + .menu-toggle-symbol {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">Fixed Navbar</div>
+
+    <div class="container">
+        <div class="left-menu" id="leftMenu">
+            <button class="collapse-button" onclick="toggleMenu()">Left Panel</button>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="menu-toggle-symbol" id="menuToggleSymbol" onclick="toggleMenu()">☰</div>
+        <div class="main-content">
+            <h1>Welcome to the Main Content Area</h1>
+            
+        
+        </div>
+        <div class="right-panel">
+            <h2>Right Panel</h2>
+            
+        </div>
+    </div>
+
+    <div class="footer">Footer</div>
+
+    <script>
+        function toggleMenu() {
+            const leftMenu = document.getElementById('leftMenu');
+            const menuToggleSymbol = document.getElementById('menuToggleSymbol');
+            leftMenu.classList.toggle('collapsed');
+            if (leftMenu.classList.contains('collapsed')) {
+                menuToggleSymbol.style.display = 'block';
+            } else {
+                menuToggleSymbol.style.display = 'none';
+            }
+        }
+
+        
+        window.addEventListener('scroll', () => {
+            console.log(`Scrolled to: ${window.scrollY}px`);
+        });
+    </script>
+</body>
+</html>
